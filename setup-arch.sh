@@ -82,4 +82,4 @@ echo -e "\e[32m[+] Setup complete.\e[0m"
 if [ "$IS_WSL" = true ]; then
     echo -e "\e[33m[!] Action Required: Restart the WSL instance for changes to take effect.\e[0m"
     echo -e "    Run this in PowerShell: wsl --terminate archlinux"
-else
+fi
