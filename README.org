@@ -5,15 +5,17 @@ irm https://raw.githubusercontent.com/Wilblik/env/master/install-arch-wsl.ps1 | 
 
 * WSL Checkpoints & Recovery (for development)
 
-#+caption
+#+begin_caption
 Create a snapshot:
+#+end_caption
 #+begin_src powershell
 wsl --terminate archlinux
 wsl --export archlinux ".\archlinux-vanilla-checkpoint.tar"
 #+end_src
 
-#+caption
+#+begin_caption
 Restore from snapshot:
+#+end_caption
 #+begin_src powershell
 wsl --unregister archlinux
 wsl --import archlinux "C:\WSL\archlinux" ".\archlinux-vanilla-checkpoint.tar"
