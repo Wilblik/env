@@ -118,11 +118,14 @@ set -e
     if [ -d "$HOME/.env/dotfiles" ]; then
         cd "$HOME/.env/dotfiles"
         for pkg in */ ; do
-            stow -t "$HOME" "${pkg%/}"
-            echo "Stowed: ${pkg%/}"
+            pkg_name="${pkg%/}"
+            
+            if stow -t "$HOME" "$pkg_name" 2>/dev/null; then
+                echo -e "\e[32m[+] Stowed: $pkg_name\e[0m"
+            else
+                echo -e "\e[33m[!] Skipped $pkg_name: Conflict detected.\e[0m"
+            fi
         done
-        
-        echo -e "\e[32m[+] All dotfiles stowed successfully.\e[0m"
     else
         echo -e "\e[31m[!] Error: dotfiles directory not found in repository.\e[0m"
     fi
