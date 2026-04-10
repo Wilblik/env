@@ -142,8 +142,8 @@ set -e
     if [ ! -d "$EMACSDIR" ]; then
         git clone --depth 1 https://github.com/doomemacs/doomemacs "$EMACSDIR"
         
-        "$EMACSDIR/bin/doom" install !
-        "$EMACSDIR/bin/doom" sync
+        yes | "$EMACSDIR/bin/doom" install
+        yes | "$EMACSDIR/bin/doom" sync
     else
         echo "Doom Emacs is already installed."
     fi
