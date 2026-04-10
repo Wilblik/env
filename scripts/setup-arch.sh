@@ -22,7 +22,7 @@ pacman-key --populate archlinux
 pacman -Syu --noconfirm
 
 echo -e "\e[34m[>] Installing packages...\e[0m"
-pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less ripgrep fd
+pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less ripgrep fd htop
 
 echo -e "\e[34m[>] Enforcing XDG Base Directory specification for ZSH...\e[0m"
 mkdir -p /etc/zsh
@@ -147,9 +147,6 @@ set -e
     else
         echo "Doom Emacs is already installed."
     fi
-
-    echo -e "\e[34m[>] Enabling Emacs Daemon...\e[0m"
-    systemctl --user enable emacs || echo "Systemd not running yet, daemon will start on next boot."
 
     echo -e "\e[36m--------------------------------------------------\e[0m"
     echo -e "\e[33m[!] Your public SSH key for GitHub:\e[0m"
