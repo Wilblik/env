@@ -135,6 +135,7 @@ set -e
 
     echo -e "\e[34m[>] Provisioning Doom Emacs...\e[0m"
 
+    export XDG_CONFIG_HOME="$HOME/.config"
     export EMACSDIR="$XDG_CONFIG_HOME/emacs"
     export DOOMDIR="$XDG_CONFIG_HOME/doom"
 
