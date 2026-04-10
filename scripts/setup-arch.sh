@@ -62,6 +62,7 @@ set -e
         git clone https://aur.archlinux.org/yay.git
         cd yay
         makepkg -si --noconfirm
+        cd "$HOME"
         rm -rf /tmp/yay
     else
         echo "yay is already installed."
