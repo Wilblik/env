@@ -118,11 +118,11 @@ set -e
     if [ -d "$HOME/.env/dotfiles" ]; then
         cd "$HOME/.env/dotfiles"
         for pkg in */ ; do
-            stow "${pkg%/}"
+            stow -t "$HOME" "${pkg%/}"
             echo "Stowed: ${pkg%/}"
         done
         
-        echo -e "\e[32m[+] All dotfiles stowed successfully.\e[0m"e
+        echo -e "\e[32m[+] All dotfiles stowed successfully.\e[0m"
     else
         echo -e "\e[31m[!] Error: dotfiles directory not found in repository.\e[0m"
     fi
