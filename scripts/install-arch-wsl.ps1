@@ -14,8 +14,11 @@ if ($installedDistros -contains $distro)
     Write-Host "`n$distro is successfully registered and active." -ForegroundColor Green
     Write-Host "Setting up $distro..." -ForegroundColor Cyan
         
-    $wslCommand = "set -e -o pipefail; curl -sL '$setupScriptUrl' | bash -s --  --wsl"
-    wsl.exe -d $distro -u root -- bash -c $wslCommand
+    $downloadCmd = "curl -sL '$setupScriptUrl' -o /tmp/setup-arch.sh"
+    wsl.exe -d $distro -u root -- bash -c $downloadCmd
+    
+    $execCmd = "bash /tmp/setup-arch.sh --wsl"
+    wsl.exe -d $distro -u root -- bash -c $execCmd
         
     if ($LASTEXITCODE -ne 0) 
     {    
