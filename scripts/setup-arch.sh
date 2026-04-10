@@ -22,7 +22,7 @@ pacman-key --populate archlinux
 pacman -Syu --noconfirm
 
 echo -e "\e[34m[>] Installing packages...\e[0m"
-pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh
+pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less
 
 echo -e "\e[34m[>] Enforcing XDG Base Directory specification for ZSH...\e[0m"
 mkdir -p /etc/zsh
@@ -109,7 +109,7 @@ set -e
     fi
 
     echo -e "\e[34m[>] Cloning environment repository and provisioning Stow...\e[0m"
-    if [ ! -d "$HOME/env" ]; then
+    if [ ! -d "$HOME/.env" ]; then
         git clone https://github.com/Wilblik/env.git "$HOME/.env"
     else
         echo "Environment repository already exists."
@@ -117,8 +117,12 @@ set -e
 
     if [ -d "$HOME/.env/dotfiles" ]; then
         cd "$HOME/.env/dotfiles"
-        stow zsh
-        echo "Dotfiles stowed successfully."
+        for pkg in */ ; do
+            stow "${pkg%/}"
+            echo "Stowed: ${pkg%/}"
+        done
+        
+        echo -e "\e[32m[+] All dotfiles stowed successfully.\e[0m"e
     else
         echo -e "\e[31m[!] Error: dotfiles directory not found in repository.\e[0m"
     fi
