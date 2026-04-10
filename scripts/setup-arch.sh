@@ -22,7 +22,7 @@ pacman-key --populate archlinux
 pacman -Syu --noconfirm
 
 echo -e "\e[34m[>] Installing packages...\e[0m"
-pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less
+pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less ripgrep fd
 
 echo -e "\e[34m[>] Enforcing XDG Base Directory specification for ZSH...\e[0m"
 mkdir -p /etc/zsh
@@ -41,10 +41,12 @@ echo -e "\e[34m[>] Unlocking wheel group sudo privileges...\e[0m"
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 if [ "$IS_WSL" = true ]; then
-    echo -e "\e[34m[>] Setting WSL default user to $TARGET_USER...\e[0m"
+    echo -e "\e[34m[>] Setting WSL default user and enabling systemd...\e[0m"
     cat <<EOF > /etc/wsl.conf
 [user]
 default=$TARGET_USER
+[boot]
+systemd=true
 EOF
 fi
 
@@ -130,6 +132,23 @@ set -e
     else
         echo -e "\e[31m[!] Error: dotfiles directory not found in repository.\e[0m"
     fi
+
+    echo -e "\e[34m[>] Provisioning Doom Emacs...\e[0m"
+
+    export EMACSDIR="$XDG_CONFIG_HOME/emacs"
+    export DOOMDIR="$XDG_CONFIG_HOME/doom"
+
+    if [ ! -d "$EMACSDIR" ]; then
+        git clone --depth 1 https://github.com/doomemacs/doomemacs "$EMACSDIR"
+        
+        "$EMACSDIR/bin/doom" install !
+        "$EMACSDIR/bin/doom" sync
+    else
+        echo "Doom Emacs is already installed."
+    fi
+
+    echo -e "\e[34m[>] Enabling Emacs Daemon...\e[0m"
+    systemctl --user enable emacs || echo "Systemd not running yet, daemon will start on next boot."
 
     echo -e "\e[36m--------------------------------------------------\e[0m"
     echo -e "\e[33m[!] Your public SSH key for GitHub:\e[0m"
