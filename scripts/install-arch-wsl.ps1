@@ -1,5 +1,5 @@
 $distro = "archlinux"
-$setupScriptUrl = "https://raw.githubusercontent.com/Wilblik/env/master/setup-arch.sh"
+$setupScriptUrl = "https://raw.githubusercontent.com/Wilblik/env/master/scripts/setup-arch.sh"
 
 Write-Host "Initiating WSL provisioning for $distro..." -ForegroundColor Cyan
 
