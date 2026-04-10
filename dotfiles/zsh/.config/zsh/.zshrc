@@ -19,9 +19,13 @@ export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
+# Emacs
+export EMACSDIR="$XDG_CONFIG_HOME/emacs"
+export DOOMDIR="$XDG_CONFIG_HOME/doom"
+
 # Preferred editor
-export EDITOR="nvim"
-export VISUAL="emacsclient -nc"
+export VISUAL="emacsclient -nc -a ''"
+export EDITOR="$VISUAL"
 
 # Add programs to PATH
 export PATH="$PATH:$XDG_BIN_HOME:$HOME/.config/emacs/bin:$HOME/.dotnet/tools" #:$XDG_DATA_HOME/cargo/bin"
@@ -60,6 +64,8 @@ source $ZSH/oh-my-zsh.sh
 # ==========================================
 # ALIASES
 # ==========================================
+
+alias e="emacsclient -nc -a ''"
 
 # Protects against stupid mistakes :)
 alias rm='rm -I'
