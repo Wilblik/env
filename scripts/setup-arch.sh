@@ -22,7 +22,7 @@ pacman-key --populate archlinux
 pacman -Syu --noconfirm
 
 echo -e "\e[34m[>] Installing packages...\e[0m"
-pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less ripgrep fd htop
+pacman -S --needed --noconfirm base-devel sudo git openssh stow curl vi neovim emacs zsh less ripgrep fd htop cmake
 
 echo -e "\e[34m[>] Enforcing XDG Base Directory specification for ZSH...\e[0m"
 mkdir -p /etc/zsh
