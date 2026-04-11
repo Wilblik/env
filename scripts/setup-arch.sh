@@ -93,11 +93,6 @@ set -e
         git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
     fi
 
-    echo -e "\e[34m[>] Configuring git...\e[0m"
-    git config --global init.defaultBranch master
-    git config --global user.email "48726405+Wilblik@users.noreply.github.com"
-    git config --global user.name "Wilblik"
-
     echo -e "\e[34m[>] Setting up SSH keys...\e[0m"
     SSH_DIR="$HOME/.ssh"
     KEY_FILE="$SSH_DIR/id_ed25519"
