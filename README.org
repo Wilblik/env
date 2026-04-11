@@ -1,4 +1,6 @@
 * Installation
+
+** Arch WSL
 #+begin_src powershell
 irm https://raw.githubusercontent.com/Wilblik/env/master/scripts/install-arch-wsl.ps1 | iex
 #+end_src
