@@ -3,14 +3,22 @@
 set -e
 
 IS_WSL=false
+TARGET_USER="wilblik"
+
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         --wsl) IS_WSL=true; shift ;;
+        --user)
+            if [[ -z "$2" || "$2" == -* ]]; then
+                echo -e "\e[31m[!] Error: Argument for $1 is missing.\e[0m" >&2
+                exit 1
+            fi
+            TARGET_USER="$2"
+            shift 2
+            ;;
         *) shift ;;
     esac
 done
-
-TARGET_USER="wilblik"
 
 # ==========================================
 # PHASE 1: ROOT EXECUTION

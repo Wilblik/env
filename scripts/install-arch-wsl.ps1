@@ -1,5 +1,6 @@
 $distro = "archlinux"
 $setupScriptUrl = "https://raw.githubusercontent.com/Wilblik/env/master/scripts/setup-arch.sh"
+$targetUser = "wilblik"
 
 Write-Host "Initiating WSL provisioning for $distro..." -ForegroundColor Cyan
 
@@ -17,7 +18,7 @@ if ($installedDistros -contains $distro)
     $downloadCmd = "curl -sL '$setupScriptUrl' -o /tmp/setup-arch.sh"
     wsl.exe -d $distro -u root -- bash -c $downloadCmd
     
-    $execCmd = "bash /tmp/setup-arch.sh --wsl"
+    $execCmd = "bash /tmp/setup-arch.sh --wsl --user $targetUser"
     wsl.exe -d $distro -u root -- bash -c $execCmd
         
     if ($LASTEXITCODE -ne 0) 
