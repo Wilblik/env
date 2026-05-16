@@ -18,7 +18,7 @@ if ($installedDistros -contains $distro)
     $downloadCmd = "curl -sL '$setupScriptUrl' -o /tmp/setup-arch.sh"
     wsl.exe -d $distro -u root -- bash -c $downloadCmd
     
-    $execCmd = "bash /tmp/setup-arch.sh --wsl --user $targetUser"
+    $execCmd = "bash /tmp/setup-arch.sh --user $targetUser"
     wsl.exe -d $distro -u root -- bash -c $execCmd
         
     if ($LASTEXITCODE -ne 0) 
