@@ -35,8 +35,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-wsl_ver=$(wslinfo --version)
-if [[ $? -eq 0 && -n "$wsl_ver" ]]; then
+if wsl_ver=$(wslinfo --version 2>/dev/null) && [[ -n "$wsl_ver" ]]; then
     export GALLIUM_DRIVER=d3d12
 fi
 
