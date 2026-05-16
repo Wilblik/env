@@ -2,6 +2,9 @@
 (when (daemonp)
   (exec-path-from-shell-initialize))
 
+;; Set shell for vterm
+(setq vterm-shell "/usr/bin/zsh")
+
 ;; Tell emacs that I have other files in config too
 (add-to-list 'load-path "~/.config/doom/functions/")
 
