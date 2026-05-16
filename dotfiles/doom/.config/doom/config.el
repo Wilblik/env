@@ -2,8 +2,6 @@
 (when (daemonp)
   (exec-path-from-shell-initialize))
 
-;; Set shell for vterm
-(setq vterm-shell "/usr/bin/zsh")
 
 ;; Tell emacs that I have other files in config too
 (add-to-list 'load-path "~/.config/doom/functions/")
@@ -11,8 +9,10 @@
 ;; Remove retarded hook that prevents me from replacing characters with <s> key
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 
-;; Directory where projects are located
+;; Variables
 (setq projectile-project-search-path '("~/Projects/"))
+(setq vterm-shell "/usr/bin/zsh")
+(setq doom-font (font-spec :size 12.0))
 
 ;; Minimap
 (setq minimap-window-location 'right)
